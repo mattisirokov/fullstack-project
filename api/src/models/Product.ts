@@ -33,3 +33,15 @@ const productSchema = new mongoose.Schema({
 })
 
 export default mongoose.model<ProductDocument>('Product', productSchema)
+
+/*
+example:
+{
+	"name":"tester",
+	"image": "http://somethingelse.com",
+	"description": "this is a decent product",
+	"category": "hats",
+	"variant": "grey",
+	"sizes": [35,33]
+}
+*/
