@@ -4,7 +4,7 @@ export type ProductDocument = Document & {
   name: string
   image: string
   description: string[]
-  category: string
+  category: 'Shoes' | 'Hats'
   variant: string
   sizes: number[]
 }
