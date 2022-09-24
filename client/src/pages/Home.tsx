@@ -1,5 +1,12 @@
-const Home = () => {
-  return <h1>This is the homepage</h1>
-}
+import React from "react";
+import ProductGrid from "components/ProductGrid";
 
-export default Home
+const Home = () => {
+  return (
+    <div>
+      <ProductGrid />
+    </div>
+  );
+};
+
+export default Home;
