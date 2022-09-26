@@ -15,8 +15,8 @@ const findById = async (productId: string): Promise<ProductDocument> => {
   return foundProduct
 }
 
-const findAll = async (): Promise<ProductDocument[]> => {
-  return Product.find().sort({ name: 1 })
+const findAll = async (query: any): Promise<ProductDocument[]> => {
+  return Product.find({ category: query }).sort({ name: 1 })
 }
 
 const update = async (

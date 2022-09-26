@@ -95,7 +95,8 @@ export const findAll = async (
   next: NextFunction
 ) => {
   try {
-    res.json(await productService.findAll())
+    console.log(req.query)
+    res.json(await productService.findAll(req.query.category))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', 400, error))
