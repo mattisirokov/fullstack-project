@@ -15,8 +15,16 @@ const findById = async (productId: string): Promise<ProductDocument> => {
   return foundProduct
 }
 
-const findAll = async (query: any): Promise<ProductDocument[]> => {
+const findByCategory = async (query: any): Promise<ProductDocument[]> => {
   return Product.find({ category: query }).sort({ name: 1 })
+}
+
+const findByName = async (query: any): Promise<ProductDocument[]> => {
+  return Product.find({ name: query }).sort({ name: 1 })
+}
+
+const findAll = async (): Promise<ProductDocument[]> => {
+  return Product.find().sort({ name: 1 })
 }
 
 const update = async (
@@ -48,8 +56,10 @@ const deleteProduct = async (
 
 export default {
   create,
-  findById,
   findAll,
+  findById,
+  findByCategory,
+  findByName,
   update,
   deleteProduct,
 }

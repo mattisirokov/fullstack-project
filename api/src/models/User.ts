@@ -51,6 +51,7 @@ example:
     "email": "tester@gmail.com"
     "password": "notmyrealpassword",
     "isBanned": false,
+    "isAdmin":true
 }
 
 */

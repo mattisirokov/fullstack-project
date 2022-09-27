@@ -88,15 +88,50 @@ export const findById = async (
   }
 }
 
-// GET /products
-export const findAll = async (
+// GET /products by category
+export const findByCategory = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     console.log(req.query)
-    res.json(await productService.findAll(req.query.category))
+    res.json(await productService.findByCategory(req.query.category))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', 400, error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+// GET /products by name
+export const findByName = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    console.log(req.query)
+    res.json(await productService.findByName(req.query.name))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', 400, error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+//GET /all products
+export const findAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await productService.findAll())
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', 400, error))
