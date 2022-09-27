@@ -7,6 +7,7 @@ export type UserDocument = Document & {
   email: string
   password: string
   isBanned: boolean
+  isAdmin: boolean
 }
 
 const userSchema = new mongoose.Schema({
