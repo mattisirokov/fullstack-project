@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  isAdmin: {
+    type: Boolean,
+    required: true,
+  },
 })
 export default mongoose.model<UserDocument>('User', userSchema)
 
