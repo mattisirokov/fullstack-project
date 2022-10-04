@@ -1,13 +1,13 @@
-import Navbar from "../components/Navbar";
+import ProductCard from "../components/ProductCard";
+import AdvancedNavbar from "../components/AdvancedNavbar";
 
 const ProductPage = () => {
-    return (
-      <div> 
-        <Navbar />
-        <h1>Product Page</h1>
-      </div>
-    );
-  };
-  
-  export default ProductPage;
-  
+  return (
+    <div>
+      <AdvancedNavbar />
+      <ProductCard />
+    </div>
+  );
+};
+
+export default ProductPage;
