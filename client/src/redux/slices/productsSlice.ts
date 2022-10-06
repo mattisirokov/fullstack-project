@@ -1,8 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
-  products: [],
+const initialState: ProductsState = {
+  allproducts: [],
+  oneproduct: {
+    name: "",
+    image: "",
+    description: "",
+    category: "",
+    variant: "",
+    sizes: [],
+  }
 };
 export type Product = {
   name: string;
@@ -10,8 +18,12 @@ export type Product = {
   description: string;
   category: string;
   variant: string;
-  sizes: [Number];
+  sizes: number[];
 };
+export interface ProductsState {
+  allproducts: Product[];
+  oneproduct: Product;
+}
 
 //fetch all products
 export const fetchProductsThunk = createAsyncThunk(
@@ -48,7 +60,7 @@ export const productsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchProductThunk.fulfilled, (state, action) => {
-      state.products = action.payload.data;
+      state.allproducts = action.payload.data;
     });
   },
 });

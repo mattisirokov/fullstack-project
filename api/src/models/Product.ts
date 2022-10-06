@@ -4,7 +4,7 @@ export type ProductDocument = Document & {
   name: string
   image: string
   description: string[]
-  category: 'Shoes' | 'Hats'
+  category: 'Wireless' | 'Custom'
   variant: string
   sizes: number[]
 }
@@ -28,6 +28,7 @@ const productSchema = new mongoose.Schema({
   },
   variant: {
     type: String,
+    required: true,
   },
   sizes: [Number],
 })
@@ -40,8 +41,8 @@ example:
 	"name":"tester",
 	"image": "http://somethingelse.com",
 	"description": "this is a decent product",
-	"category": "hats",
-	"variant": "grey",
-	"sizes": [35,33]
+	"category": "Wireless",
+	"variant": "Version 2",
+	"sizes": [75,65]
 }
 */
