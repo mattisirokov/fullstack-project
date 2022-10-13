@@ -15,6 +15,7 @@ export default function ProductCard() {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state);
 
+
   React.useEffect(() => {
     dispatch(fetchProductsThunk());
   }, [dispatch]);

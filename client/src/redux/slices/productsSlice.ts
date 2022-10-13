@@ -35,11 +35,12 @@ export const fetchProductsThunk = createAsyncThunk(
     return {
       data: response.data,
       status: response.status,
+      console: console.log(response.data),
     };
   }
 );
 
-//fetches single country for the Product page
+//fetches single product for the Product page
 export const fetchProductThunk = createAsyncThunk(
   "products/fetch",
   async (productId: string) => {
@@ -52,6 +53,20 @@ export const fetchProductThunk = createAsyncThunk(
     };
   }
 );
+
+//fetches products for the search component
+export const fetchProductSearch = createAsyncThunk(
+  'products/fetch',
+  async (query: string) => {
+    const URL = `http://localhost:4000/api/v1/products/name?name=${query}`;
+    const response = await axios.get(URL)
+
+    return {
+      data: response.data,
+      status: response.status,
+    }
+  }
+)
 
 export const productsSlice = createSlice({
   name: "products",
