@@ -3,7 +3,7 @@ import AdvancedNavbar from "../components/AdvancedNavbar";
 import SalesCounter from "../components/SalesCounter";
 import UserCounter from "../components/UserCounter";
 import ProductCounter from "../components/ProductCounter";
-import UserLayout from "../components/UserLayout";
+import UserTable from "../components/UserTable";
 
 
 const AdminConsole = () => {
@@ -22,7 +22,7 @@ const AdminConsole = () => {
             <ProductCounter />
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
-            <UserLayout />
+            <UserTable />
           </Grid>
           
         </Grid>
