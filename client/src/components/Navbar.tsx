@@ -8,9 +8,9 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { GoogleLogin } from "@react-oauth/google";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Admin panel", "Logout"];
@@ -124,15 +124,20 @@ const ResponsiveAppBar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
-               
               </MenuItem>
             ))}
           </Box>
 
           <Box sx={{ p: 2 }}>
-            <Button color="inherit" variant="outlined" href={`/}`}>
-              Log in
-            </Button>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+            
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
