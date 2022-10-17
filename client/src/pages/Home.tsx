@@ -11,21 +11,24 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Footer from "components/Footer";
+
 
 const cards = [1, 2, 3];
 
 const theme = createTheme();
 
-export default function Home() {
+const Home = () => {
+
+
+  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
       <main>
-       
         <Box
           sx={{
             bgcolor: "background.paper",
@@ -63,12 +66,11 @@ export default function Home() {
               <Button href="/products" variant="contained">
                 Products
               </Button>
-              <Button variant="outlined">Sign up</Button>
+              <Button href="/login" variant="contained"> Login </Button>
             </Stack>
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
-          
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
@@ -109,4 +111,6 @@ export default function Home() {
       <Footer />
     </ThemeProvider>
   );
-}
+};
+
+export default Home;

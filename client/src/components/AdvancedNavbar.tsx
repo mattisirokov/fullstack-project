@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-import SearchBar from "./SearchBar";
+//import SearchBar from "./SearchBar";
 
 const pages = ["Products", "Pricing", "Blog"];
 
@@ -121,7 +121,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-         <SearchBar />
+         
         </Toolbar>
       </Container>
     </AppBar>

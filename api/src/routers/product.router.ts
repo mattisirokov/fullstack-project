@@ -10,6 +10,8 @@ import {
   createProduct,
 } from '../controllers/product.controller'
 
+import authentication from '../middlewares/authentication'
+
 const router = express.Router()
 
 // Every path we define here will get /api/v1/products prefix

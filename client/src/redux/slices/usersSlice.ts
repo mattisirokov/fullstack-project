@@ -29,7 +29,7 @@ export interface UsersState {
 
 //fetch all users
 export const fetchUsersThunk = createAsyncThunk(
-  "users/fetch",
+  "users/fetchAll",
   async () => {
     const URL = `http://localhost:4000/api/v1/users`;
     const response = await axios.get(URL);
@@ -43,7 +43,7 @@ export const fetchUsersThunk = createAsyncThunk(
 );
 
 //fetch one user
-export const fetchUserThunk = createAsyncThunk("user/fetch", async (Id) => {
+export const fetchUserThunk = createAsyncThunk("user/fetchOne", async (Id) => {
     const URL = `http://localhost:4000/api/v1/users/${Id}`;
     const response = await axios.get(URL);
   
@@ -55,12 +55,15 @@ export const fetchUserThunk = createAsyncThunk("user/fetch", async (Id) => {
   
 
 export const usersSlice = createSlice({
-  name: "users",
+  name: "usersLast",
   initialState,
   reducers: {},
 
   extraReducers: (builder) => {
     builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
+      state.allusers = action.payload.data;
+    });
+    builder.addCase(fetchUsersThunk.fulfilled, (state, action) => {
       state.allusers = action.payload.data;
     });
   },
