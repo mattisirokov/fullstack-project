@@ -4,6 +4,7 @@ import SalesCounter from "../components/SalesCounter";
 import UserCounter from "../components/UserCounter";
 import ProductCounter from "../components/ProductCounter";
 import UserTable from "../components/UserTable";
+import ProductTable from "../components/ProductTable";
 
 
 const AdminConsole = () => {
@@ -22,8 +23,18 @@ const AdminConsole = () => {
             <ProductCounter />
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
+            <h3>Manage users</h3>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
             <UserTable />
           </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <h3>Manage products</h3>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <ProductTable />
+          </Grid>
+         
           
         </Grid>
       </Box>

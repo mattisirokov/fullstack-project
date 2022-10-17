@@ -30,6 +30,7 @@ export default function BasicTable() {
                 <TableCell align="right">Username</TableCell>
                 <TableCell align="right">Email</TableCell>
                 <TableCell align="right">Admin status</TableCell>
+                <TableCell align="right">Banned status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -44,8 +45,16 @@ export default function BasicTable() {
                   <TableCell align="right">{user.surname}</TableCell>
                   <TableCell align="right">{user.username}</TableCell>
                   <TableCell align="right">{user.email}</TableCell>
-                  <TableCell align="right">{user.isAdmin}</TableCell>
-                  <TableCell align="right">{user.isBanned}</TableCell>
+                  <TableCell align="right">{user.isAdmin ? (
+                    <div>Admin</div>
+                  ) : (
+                    <div>Not admin</div>
+                  )}</TableCell>
+                  <TableCell align="right">{user.isBanned ? (
+                    <div>Banned</div>
+                  ) : (
+                    <div>Not banned</div>
+                  )}</TableCell>
                
                 </TableRow>
               ))}
