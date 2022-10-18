@@ -20,18 +20,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
-  },
+
   email: {
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
+
   isBanned: {
     type: Boolean,
     required: true,
@@ -48,9 +42,7 @@ example:
 {
     "firstname":"tester",
     "surname":"tester surname",
-    "username": "testerusername",
-    "email": "tester@gmail.com"
-    "password": "notmyrealpassword",
+    "email": "tester@gmail.com",
     "isBanned": false,
     "isAdmin":true
 }
