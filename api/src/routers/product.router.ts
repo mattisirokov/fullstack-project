@@ -10,7 +10,7 @@ import {
   createProduct,
 } from '../controllers/product.controller'
 
-import authentication from '../middlewares/authentication'
+//import authentication from '../middlewares/authentication'
 
 const router = express.Router()
 

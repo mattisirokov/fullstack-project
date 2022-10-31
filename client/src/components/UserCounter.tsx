@@ -1,8 +1,21 @@
+import * as React from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import { fetchUsersThunk, User } from 'redux/slices/usersSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "redux/store";
 
- const Users = () => (
+export default function Users() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { users } = useSelector((state: RootState) => state);
+
+  React.useEffect(() => {
+    dispatch(fetchUsersThunk());
+  }, [dispatch]);
+  
+
+ const handleUserCounterRender = (users: User[]) => (
   <Card>
     <CardContent>
       <Grid
@@ -22,7 +35,7 @@ import PeopleIcon from '@mui/icons-material/PeopleOutlined';
             color="textPrimary"
             variant="h4"
           >
-            2
+            {users.length}
           </Typography>
         </Grid>
         <Grid item>
@@ -63,5 +76,14 @@ import PeopleIcon from '@mui/icons-material/PeopleOutlined';
     </CardContent>
   </Card>
 );
+return (
+  <div>
+    {users.allusers.length > 0
+      ? handleUserCounterRender(users.allusers)
+      : "Loading..."}
+  </div>
+);
+        
+    };
 
-    export default Users;
+

@@ -5,7 +5,7 @@ import UserCounter from "../components/UserCounter";
 import ProductCounter from "../components/ProductCounter";
 import UserTable from "../components/UserTable";
 import ProductTable from "../components/ProductTable";
-
+import AddProduct from "../components/AddProduct";
 
 const AdminConsole = () => {
   return (
@@ -24,23 +24,22 @@ const AdminConsole = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <h3>Manage users</h3>
+            
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <UserTable />
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <h3>Manage products</h3>
+            <AddProduct />
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <ProductTable />
           </Grid>
-         
-          
         </Grid>
       </Box>
     </div>
   );
-  
 };
 
 export default AdminConsole;

@@ -17,17 +17,16 @@ export default function () {
         const email = parsedToken.payload.email
         let user: any = await User.findOne({
           email,
-          isAdmin: email === 'mattisirokov@gmail.com',
+          isAdmin: email === 'matti.sirokov@integrify.io',
         })
 
         if (!user) {
           user = new User({
             firstname: parsedToken.payload.given_name,
             surname: parsedToken.payload.family_name,
-            username: parsedToken.payload.name,
             email: parsedToken.payload.email,
-            isAdmin: false,
             isBanned: false,
+            isAdmin: false,
           })
           user.save()
         }

@@ -8,11 +8,11 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { fetchProductSearch } from "redux/slices/productsSlice";
-import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
+  border: "1px solid #e2e2e1",
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -55,17 +55,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchBar() {
   const dispatch = useDispatch<AppDispatch>();
   const [query, setQuery] = useState("");
-  const Navigate = useNavigate();
 
   const searchHandler = (e: any) => {
-    if (query.trim()) {
-      Navigate(`/products/search/${query}`);
-    } else {
-      Navigate(`/products`);
+    setQuery(e.target.value);
+    if (query !== "") {
+      dispatch(fetchProductSearch(query));
     }
   };
+
   useEffect(() => {
-    dispatch(fetchProductSearch(query as string));
+    dispatch(fetchProductSearch(query));
   }, [dispatch, query]);
 
   return (
@@ -74,12 +73,7 @@ export default function SearchBar() {
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
-        <form onChange={searchHandler}>
-          <StyledInputBase
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="search"
-          />
-        </form>
+        <StyledInputBase onChange={searchHandler} placeholder="search" />
       </Search>
     </div>
   );

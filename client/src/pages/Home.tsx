@@ -95,8 +95,7 @@ const Home = () => {
                       Featured Product Title
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                      This is where I will talk about the featured Product. Bring out some cool features.
                     </Typography>
                   </CardContent>
                   <CardActions>

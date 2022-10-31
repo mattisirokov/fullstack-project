@@ -1,8 +1,20 @@
+import * as React from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
+import { fetchProductsThunk, Product } from 'redux/slices/productsSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "redux/store";
 
- const Users = () => (
+export default function Products() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { products } = useSelector((state: RootState) => state);
+
+  React.useEffect(() => {
+    dispatch(fetchProductsThunk());
+  }, [dispatch]);
+
+ const handleProductCounterRender = (products:Product[]) => (
   <Card>
     <CardContent>
       <Grid
@@ -22,7 +34,7 @@ import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
             color="textPrimary"
             variant="h4"
           >
-            2
+            {products.length}
           </Typography>
         </Grid>
         <Grid item>
@@ -64,4 +76,14 @@ import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
   </Card>
 );
 
-    export default Users;
+return (
+  <div>
+    {products.allproducts.length > 0
+      ? handleProductCounterRender(products.allproducts)
+      : "Loading..."}
+  </div>
+);
+        
+    };
+
+   

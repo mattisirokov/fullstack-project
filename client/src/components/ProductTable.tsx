@@ -8,11 +8,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "redux/store";
-import { fetchProductsThunk, Product } from "redux/slices/productsSlice";
+import { fetchProductsThunk, Product, deleteProductThunk } from "redux/slices/productsSlice";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { IconButton } from "@mui/material";
 
 export default function BasicTable() {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state);
+
+  const handleDelete = (Id: string) => {
+    dispatch(deleteProductThunk(Id));
+  };
+
 
   React.useEffect(() => {
     dispatch(fetchProductsThunk());
@@ -28,8 +35,8 @@ export default function BasicTable() {
                 <TableCell>Product name</TableCell>
                 <TableCell align="right">Variant</TableCell>
                 <TableCell align="right">Category</TableCell>
-
                 <TableCell align="right">Available Sizes</TableCell>
+                <TableCell align="right">Delete product</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -51,6 +58,14 @@ export default function BasicTable() {
                         return <li key={JSON.stringify(sizes)}>{sizes}</li>;
                       })}
                     </ul>
+                  </TableCell>
+
+                  <TableCell align="right">
+                    <IconButton aria-label="Delete product"
+                    onClick={() => handleDelete(product._id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}
