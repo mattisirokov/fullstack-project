@@ -1,14 +1,12 @@
-# Fullstack project - read carefully.
-Choose between 2 topics provided in the REST API Slides
+# Integrify fullstack project
 
+This is still a work in progress, I will be back with updates to the frontend, but the backend is somewhat nearing completion!
 
 ## Installation
 
 You should use either `npm` or `yarn` but not both. **It's recommended** to use `yarn`
 
 This template already comes with all the needed packages. In case you want to install extra ones ie MUI feel free.
-
-
 
 you have two different folders:
 
@@ -30,15 +28,16 @@ yarn install
 
 To run the `frontend` make sure you are under the client folder and:
 
-````bash
+```bash
 yarn start
-````
+```
 
 To run the `backend` make sure you are under the api folder and:
 
-````bash
+```bash
 yarn start:dev
-````
+```
+
 <br />
 
 > `Pro tip:`Open 3 different terminals. 1 for client dir (to run the client), 1 for api dir (to run the api), and another in the root directory for committing your changes.
@@ -65,7 +64,7 @@ yarn start:dev
 
 Check the REST API slides for what are the required features
 
-*you are allowed to add more features if you finish the required ones.*
+_you are allowed to add more features if you finish the required ones._
 
 <br />
 
@@ -89,11 +88,12 @@ Check the REST API slides for what are the required features
 <br />
 
 ## Recap on how to start developing
+
 1. Build basic routes
 2. Connect some or most of the routes to your frontend
 3. Start adding Auth after the security lecture (Please, I don't want to see Auth code when you don't have all the routes implemented + some routes being fetched from the frontend)
 
-> PS. *you are only allowed to add Auth before the security lecture **if** you have all routes implemented + some routes fetched from the frontend then*
+> PS. _you are only allowed to add Auth before the security lecture **if** you have all routes implemented + some routes fetched from the frontend then_
 
 <br />
 
@@ -114,14 +114,14 @@ You should have by now, mine and Vincent's 1on1 30mins links, feel free to book.
 
 ## FAQ
 
-* What if I finished earlier?
-  * You can always have extra tasks; reach out to me if you need help on what to add.
-* Can I add more features?
-  * Sure you can, but first, you are required to finish the requirements
-* I'm progressing slowly! I'm stuck!
-  * Reach out to me or Vincent. (Remember you have a deadline to meet)
-* Deadline?
-  * check your calendar (presentation days)
-* Can I know my own evaluation?
-  * this data is between me and the BD team
-  * you can still book 1on1 session with me or send me a DM where I would tell you my opinion of your tech/soft skills.
+- What if I finished earlier?
+  - You can always have extra tasks; reach out to me if you need help on what to add.
+- Can I add more features?
+  - Sure you can, but first, you are required to finish the requirements
+- I'm progressing slowly! I'm stuck!
+  - Reach out to me or Vincent. (Remember you have a deadline to meet)
+- Deadline?
+  - check your calendar (presentation days)
+- Can I know my own evaluation?
+  - this data is between me and the BD team
+  - you can still book 1on1 session with me or send me a DM where I would tell you my opinion of your tech/soft skills.
