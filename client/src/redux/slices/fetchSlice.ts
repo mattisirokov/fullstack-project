@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Product, ProductsState } from "types";
 
 const initialState: ProductsState = {
-  allproducts: [],
-  oneproduct: {
+  items: [],
+  singleItem: {
     _id: "",
     name: "",
     image: "",
@@ -14,20 +15,6 @@ const initialState: ProductsState = {
   },
   isLoading: false,
 };
-export type Product = {
-  _id: string;
-  name: string;
-  image: string;
-  description: string;
-  category: string;
-  variant: string;
-  sizes: number[];
-};
-export interface ProductsState {
-  allproducts: Product[];
-  oneproduct: Product;
-  isLoading: boolean;
-}
 
 //fetch all products
 export const fetchProductsThunk = createAsyncThunk(
@@ -44,21 +31,7 @@ export const fetchProductsThunk = createAsyncThunk(
   }
 );
 
-//fetches single product for the Product page
-export const fetchProductThunk = createAsyncThunk(
-  "products/fetchOne",
-  async (productId: string) => {
-    const URL = `http://localhost:4000/api/v1/products/${productId}`;
-    const response = await axios.get(URL);
-
-    return {
-      data: productId,
-      status: response.status,
-    };
-  }
-);
-
-//fetch product by category 
+//fetch product by category
 export const fetchProductByCategoryThunk = createAsyncThunk(
   "products/fetchByCategory",
   async (category: string) => {
@@ -70,7 +43,6 @@ export const fetchProductByCategoryThunk = createAsyncThunk(
     return {
       data: response.data,
       status: response.status,
-      
     };
   }
 );
@@ -132,10 +104,10 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(fetchProductsThunk.fulfilled, (state, action) => {
-      state.allproducts = action.payload.data;
+      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
-    
+
     builder.addCase(fetchProductByCategoryThunk.pending, (state) => {
       state.isLoading = true;
     });
@@ -143,7 +115,7 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(fetchProductByCategoryThunk.fulfilled, (state, action) => {
-      state.allproducts = action.payload.data;
+      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
     builder.addCase(fetchProductSearch.pending, (state) => {
@@ -153,7 +125,7 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(fetchProductSearch.fulfilled, (state, action) => {
-      state.allproducts = action.payload.data;
+      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
     builder.addCase(addProductThunk.pending, (state) => {
@@ -163,10 +135,9 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(addProductThunk.fulfilled, (state, action) => {
-      state.allproducts = action.payload.data;
+      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
-    
   },
 });
 
