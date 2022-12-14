@@ -30,6 +30,20 @@ export const fetchProductsThunk = createAsyncThunk(
   }
 );
 
+//fetches products for the search component
+export const fetchProductSearch = createAsyncThunk(
+  "products/fetchSearch",
+  async (query: string) => {
+    const URL = `http://localhost:4000/api/v1/products/name?name=${query}`;
+    const response = await axios.get(URL);
+
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  }
+);
+
 //fetch product by category
 export const fetchProductByCategoryThunk = createAsyncThunk(
   "products/fetchByCategory",
@@ -50,20 +64,6 @@ export const deleteProductThunk = createAsyncThunk(
   async (productId: string) => {
     const URL = `http://localhost:4000/api/v1/products/${productId}`;
     const response = await axios.delete(URL);
-
-    return {
-      data: response.data,
-      status: response.status,
-    };
-  }
-);
-
-//fetches products for the search component
-export const fetchProductSearch = createAsyncThunk(
-  "products/fetchSearch",
-  async (query: string) => {
-    const URL = `http://localhost:4000/api/v1/products/name?name=${query}`;
-    const response = await axios.get(URL);
 
     return {
       data: response.data,
@@ -96,11 +96,21 @@ export const productsSlice = createSlice({
       state.allitems = action.payload.data;
       state.isLoading = false;
     });
-
     builder.addCase(fetchProductsThunk.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(fetchProductsThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(fetchProductSearch.fulfilled, (state, action) => {
+      state.allitems = action.payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchProductSearch.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchProductSearch.rejected, (state) => {
       state.isLoading = false;
     });
 
@@ -114,16 +124,7 @@ export const productsSlice = createSlice({
       state.singleItem = action.payload.data;
       state.isLoading = false;
     });
-    builder.addCase(fetchProductSearch.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(fetchProductSearch.rejected, (state) => {
-      state.isLoading = false;
-    });
-    builder.addCase(fetchProductSearch.fulfilled, (state, action) => {
-      state.singleItem = action.payload.data;
-      state.isLoading = false;
-    });
+
     builder.addCase(addProductThunk.pending, (state) => {
       state.isLoading = true;
     });
