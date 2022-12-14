@@ -15,7 +15,7 @@ export default function ProductCards() {
 
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {products.items.map((product: Product) => (
+      {products.allitems.map((product: Product) => (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="www.google.com">
             d

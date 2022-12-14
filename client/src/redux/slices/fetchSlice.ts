@@ -3,7 +3,7 @@ import axios from "axios";
 import { Product, ProductsState } from "types";
 
 const initialState: ProductsState = {
-  items: [],
+  allitems: [],
   singleItem: {
     _id: "",
     name: "",
@@ -18,7 +18,7 @@ const initialState: ProductsState = {
 
 //fetch all products
 export const fetchProductsThunk = createAsyncThunk(
-  "products/fetch",
+  "products/fetchAll",
   async () => {
     const URL = `http://localhost:4000/api/v1/products`;
     const response = await axios.get(URL);
@@ -26,7 +26,6 @@ export const fetchProductsThunk = createAsyncThunk(
     return {
       data: response.data,
       status: response.status,
-      console: console.log("fetching all products"),
     };
   }
 );
@@ -37,8 +36,6 @@ export const fetchProductByCategoryThunk = createAsyncThunk(
   async (category: string) => {
     const URL = `http://localhost:4000/api/v1/products/category?category=${category}`;
     const response = await axios.get(URL);
-
-    console.log("fetching products by category");
 
     return {
       data: response.data,
@@ -71,7 +68,6 @@ export const fetchProductSearch = createAsyncThunk(
     return {
       data: response.data,
       status: response.status,
-      console: console.log("fetching all products for search"),
     };
   }
 );
@@ -82,7 +78,6 @@ export const addProductThunk = createAsyncThunk(
   async (product: Product) => {
     const URL = `http://localhost:4000/api/v1/products`;
     const response = await axios.post(URL, product);
-    console.log("adding new product");
 
     return {
       data: response.data,

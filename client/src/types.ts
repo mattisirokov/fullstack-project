@@ -9,7 +9,7 @@ export type Product = {
 };
 
 export interface ProductsState {
-  items: Product[];
+  allitems: Product[];
   singleItem: Product;
   isLoading: boolean;
 }
