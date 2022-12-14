@@ -114,25 +114,25 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     });
 
+    builder.addCase(fetchProductByCategoryThunk.fulfilled, (state, action) => {
+      state.allitems = action.payload.data;
+      state.isLoading = false;
+    });
     builder.addCase(fetchProductByCategoryThunk.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(fetchProductByCategoryThunk.rejected, (state) => {
       state.isLoading = false;
     });
-    builder.addCase(fetchProductByCategoryThunk.fulfilled, (state, action) => {
+
+    builder.addCase(addProductThunk.fulfilled, (state, action) => {
       state.singleItem = action.payload.data;
       state.isLoading = false;
     });
-
     builder.addCase(addProductThunk.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(addProductThunk.rejected, (state) => {
-      state.isLoading = false;
-    });
-    builder.addCase(addProductThunk.fulfilled, (state, action) => {
-      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
   },
