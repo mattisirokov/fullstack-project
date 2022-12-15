@@ -1,4 +1,4 @@
-export default function DeleteUser() {
+export default function DeleteProduct() {
   return (
     <div>
       <button
@@ -6,7 +6,7 @@ export default function DeleteUser() {
         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         data-modal-toggle="popup-modal"
       >
-        Delete user
+        Delete product
       </button>
 
       <div
@@ -52,7 +52,7 @@ export default function DeleteUser() {
                 ></path>
               </svg>
               <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Are you sure you want to delete this user?
+                Are you sure you want to delete this product?
               </h3>
               <button
                 data-modal-toggle="popup-modal"
