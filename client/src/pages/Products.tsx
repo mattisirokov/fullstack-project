@@ -1,5 +1,6 @@
 import Navbar from "components/Navbar";
 import Search from "components/Search";
+import DropdownFilter from "components/DropdownFilter";
 import Footer from "components/Footer";
 import ProductCards from "components/ProductCards";
 
@@ -64,7 +65,8 @@ const Products = () => {
         </div>
       </section>
       <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-screen-xl sm:py-1 lg:px-1">
+        <div className=" flex justify-around items-baseline mx-auto max-w-screen-xl sm:py-1 lg:px-1">
+          <DropdownFilter />
           <Search />
         </div>
       </section>
