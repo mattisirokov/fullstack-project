@@ -13,3 +13,27 @@ export interface ProductsState {
   singleItem: Product;
   isLoading: boolean;
 }
+
+export type User = {
+  _id: string;
+  firstname: string;
+  surname: string;
+  email: string;
+  isBanned: boolean;
+  isAdmin: boolean;
+};
+
+export type UpdatedUser = {
+  _id: string;
+  firstname: string;
+  surname: string;
+  email: string;
+  isBanned: boolean;
+  isAdmin: boolean;
+};
+
+export interface UsersState {
+  allusers: User[];
+  singleUser: User;
+  isLoading: boolean;
+}

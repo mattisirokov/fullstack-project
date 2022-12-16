@@ -1,43 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import axios from "axios";
+import { UpdatedUser, UsersState } from "types";
 
 const initialState: UsersState = {
   allusers: [],
-  oneuser: {
+  singleUser: {
     _id: "",
     firstname: "",
     surname: "",
-
     email: "",
-
     isBanned: false,
     isAdmin: false,
   },
-};
-export type User = {
-  _id: string;
-  firstname: string;
-  surname: string;
-
-  email: string;
-
-  isBanned: boolean;
-  isAdmin: boolean;
-};
-export interface UsersState {
-  allusers: User[];
-  oneuser: User;
-}
-
-export type UpdatedUser = {
-  _id: string;
-  firstname: string;
-  surname: string;
-
-  email: string;
-
-  isBanned: boolean;
-  isAdmin: boolean;
+  isLoading: false,
 };
 
 //fetch all users
@@ -68,7 +44,7 @@ export const fetchUserThunk = createAsyncThunk(
 );
 
 //delete user
-export const deleteOneUserThunk = createAsyncThunk(
+export const deleteUserThunk = createAsyncThunk(
   "user/delete",
   async (Id: string) => {
     const URL = `http://localhost:4000/api/v1/users/${Id}`;
@@ -104,11 +80,34 @@ export const usersSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
+    builder.addCase(fetchUsersThunk.fulfilled, (state, action) => {
+      state.allusers = action.payload.data;
+    });
+    builder.addCase(fetchUsersThunk.pending, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(fetchUsersThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
     builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
       state.allusers = action.payload.data;
     });
-    builder.addCase(fetchUsersThunk.fulfilled, (state, action) => {
+    builder.addCase(fetchUserThunk.pending, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(fetchUserThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(updateUserThunk.fulfilled, (state, action) => {
       state.allusers = action.payload.data;
+    });
+    builder.addCase(updateUserThunk.pending, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(updateUserThunk.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

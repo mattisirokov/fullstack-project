@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsersThunk } from "redux/slices/usersSlice";
+import { deleteUserThunk, fetchUsersThunk } from "redux/slices/usersSlice";
 import { AppDispatch, RootState } from "redux/store";
-import DeleteUser from "./DeleteUser";
 
 export default function UserTable() {
   const dispatch = useDispatch<AppDispatch>();
   const { users } = useSelector((state: RootState) => state);
+
+  const handleDeleteUser = (Id: string) => {
+    dispatch(deleteUserThunk(Id));
+  };
 
   useEffect(() => {
     dispatch(fetchUsersThunk());
@@ -47,7 +50,12 @@ export default function UserTable() {
                 <td className="py-4 px-6">{user.isBanned.toString()}</td>
                 <td className="py-4 px-6">{user.isAdmin.toString()}</td>
                 <td className="py-4 px-6">
-                  <DeleteUser />
+                  <button
+                    onClick={() => handleDeleteUser(user._id)}
+                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                  >
+                    Delete user
+                  </button>
                 </td>
               </tr>
             </>
