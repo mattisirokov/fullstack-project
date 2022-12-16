@@ -4,6 +4,7 @@ import UserCounter from "components/UserCounter";
 import UserTable from "components/UserTable";
 import ProductTable from "components/ProductTable";
 import Footer from "components/Footer";
+import AddProduct from "components/AddProduct";
 const Dashboard = () => {
   return (
     <>
@@ -49,6 +50,7 @@ const Dashboard = () => {
             <h2 className="text-4xl mb-4 font-extrabold dark:text-white">
               Manage users
             </h2>
+
             <UserTable />
           </div>
         </section>
@@ -57,6 +59,9 @@ const Dashboard = () => {
             <h2 className="text-4xl mb-4 font-extrabold dark:text-white">
               Manage products
             </h2>
+            <div>
+              <AddProduct />
+            </div>
             <ProductTable />
           </div>
         </section>
