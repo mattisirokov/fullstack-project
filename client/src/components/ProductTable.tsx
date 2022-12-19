@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   deleteProductThunk,
@@ -12,8 +13,14 @@ export default function ProductTable() {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state);
 
+  const navigate = useNavigate();
+  const refreshPage = () => {
+    navigate(0);
+  };
+
   const handleRemoveProduct = (_id: string) => {
     dispatch(deleteProductThunk(_id));
+    refreshPage();
   };
 
   useEffect(() => {

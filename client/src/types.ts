@@ -14,6 +14,16 @@ export interface ProductsState {
   isLoading: boolean;
 }
 
+export type ProductData = {
+  _id: string;
+  name: string;
+  image: string;
+  description: string;
+  category: string;
+  variant: string;
+  sizes: number[];
+};
+
 export type User = {
   _id: string;
   firstname: string;
