@@ -16,6 +16,7 @@ export default function Search() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
+
   useEffect(() => {
     if (!query) {
       dispatch(fetchProductsThunk());

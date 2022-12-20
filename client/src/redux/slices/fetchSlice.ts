@@ -30,6 +30,19 @@ export const fetchProductsThunk = createAsyncThunk(
   }
 );
 
+export const fetchProductThunk = createAsyncThunk(
+  "products/fetchSingle",
+  async (productId: string) => {
+    const URL = `http://localhost:4000/api/v1/products/${productId}`;
+    const response = await axios.get(URL);
+
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  }
+);
+
 //fetches products for the search component
 export const fetchProductSearch = createAsyncThunk(
   "products/fetchSearch",
@@ -100,6 +113,17 @@ export const productsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchProductsThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(fetchProductThunk.fulfilled, (state, action) => {
+      state.allitems = action.payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchProductThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchProductThunk.rejected, (state) => {
       state.isLoading = false;
     });
 

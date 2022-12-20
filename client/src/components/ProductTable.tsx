@@ -45,6 +45,7 @@ export default function ProductTable() {
               available sizes
             </th>
             <th scope="col" className="py-3 px-6"></th>
+            <th scope="col" className="py-3 px-6"></th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,17 @@ export default function ProductTable() {
 
                 <td className="py-4 px-6">{product.variant}</td>
                 <td className="py-4 px-6">{product.sizes.toString()}</td>
+
+                <td className="py-4 px-6">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigate(`/edit/${product._id}`);
+                    }}
+                  >
+                    Edit Product
+                  </button>
+                </td>
                 <td className="py-4 px-6">
                   <button
                     type="button"
