@@ -30,6 +30,7 @@ export const fetchProductsThunk = createAsyncThunk(
   }
 );
 
+//fetches single product
 export const fetchProductThunk = createAsyncThunk(
   "products/fetchSingle",
   async (productId: string) => {
@@ -85,6 +86,20 @@ export const deleteProductThunk = createAsyncThunk(
   }
 );
 
+//update product
+export const updateProductThunk = createAsyncThunk(
+  "products/update",
+  async (productId: string) => {
+    const URL = `http://localhost:4000/api/v1/products/${productId}`;
+    const response = await axios.put(URL);
+
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  }
+);
+
 //add product
 export const addProductThunk = createAsyncThunk(
   "products/add",
@@ -117,7 +132,7 @@ export const productsSlice = createSlice({
     });
 
     builder.addCase(fetchProductThunk.fulfilled, (state, action) => {
-      state.allitems = action.payload.data;
+      state.singleItem = action.payload.data;
       state.isLoading = false;
     });
     builder.addCase(fetchProductThunk.pending, (state) => {
@@ -146,6 +161,17 @@ export const productsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchProductByCategoryThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(updateProductThunk.fulfilled, (state, action) => {
+      state.singleItem = action.payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(updateProductThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateProductThunk.rejected, (state) => {
       state.isLoading = false;
     });
 
