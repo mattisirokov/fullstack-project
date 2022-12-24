@@ -3,10 +3,21 @@ import Footer from "components/Footer";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "redux/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProductThunk } from "redux/slices/fetchSlice";
+import { ProductData } from "types";
 
 export default function EditProduct() {
+  const [updatedInfo, setUpdatedInfo] = useState<ProductData>({
+    _id: "",
+    name: "",
+    image: "",
+    description: "",
+    category: "",
+    variant: "",
+    sizes: [],
+  });
+
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state);
   const { productId } = useParams<{ productId: string }>();
