@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Product, ProductsState } from "types";
+import { ProductsState, ProductData } from "types";
 import axios from "axios";
 
 const initialState: ProductsState = {
@@ -89,8 +89,8 @@ export const deleteProductThunk = createAsyncThunk(
 //update product
 export const updateProductThunk = createAsyncThunk(
   "products/update",
-  async (productId: string) => {
-    const URL = `http://localhost:4000/api/v1/products/${productId}`;
+  async (product: ProductData) => {
+    const URL = `http://localhost:4000/api/v1/products${product._id}`;
     const response = await axios.put(URL);
 
     return {
@@ -103,7 +103,7 @@ export const updateProductThunk = createAsyncThunk(
 //add product
 export const addProductThunk = createAsyncThunk(
   "products/add",
-  async (product: Product) => {
+  async (product: ProductData) => {
     const URL = `http://localhost:4000/api/v1/products`;
     const response = await axios.post(URL, product);
 
